@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.810.4
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jsender", "jsender\jsender.csproj", "{D0B3CA98-1B49-4DE5-82CB-9FDA9FF8875E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App", "App", "{70A6A56F-7534-43C5-91C7-B6E5AAC9A2A9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{CA7EB52F-058C-451F-B684-3BAF6EBDB2FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jsender.tests", "jsender.tests\jsender.tests.csproj", "{A49B021D-BE68-4714-9E37-5E7A5080E3F6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D0B3CA98-1B49-4DE5-82CB-9FDA9FF8875E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0B3CA98-1B49-4DE5-82CB-9FDA9FF8875E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0B3CA98-1B49-4DE5-82CB-9FDA9FF8875E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0B3CA98-1B49-4DE5-82CB-9FDA9FF8875E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A49B021D-BE68-4714-9E37-5E7A5080E3F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A49B021D-BE68-4714-9E37-5E7A5080E3F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A49B021D-BE68-4714-9E37-5E7A5080E3F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A49B021D-BE68-4714-9E37-5E7A5080E3F6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {37E773A8-4899-47C5-8D17-CFD1619F088D}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D0B3CA98-1B49-4DE5-82CB-9FDA9FF8875E} = {70A6A56F-7534-43C5-91C7-B6E5AAC9A2A9}
+		{A49B021D-BE68-4714-9E37-5E7A5080E3F6} = {CA7EB52F-058C-451F-B684-3BAF6EBDB2FB}
+	EndGlobalSection
+EndGlobal
