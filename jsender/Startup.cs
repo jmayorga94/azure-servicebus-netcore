@@ -28,6 +28,12 @@ namespace jsender
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddApiVersioning(options =>
+            {
+                options.AssumeDefaultVersionWhenUnspecified = true;
+                options.DefaultApiVersion = new ApiVersion(1, 0);
+            });
+
             services.AddScoped<IMessageService, AzServiceBusMessageService>();
             services.Configure<AzServiceBusConfig>(Configuration.GetSection("AzServiceBusConfig"));
         }

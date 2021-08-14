@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.810.4
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jsender", "jsender\jsender.csproj", "{D0B3CA98-1B49-4DE5-82CB-9FDA9FF8875E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jsender.API", "jsender\jsender.API.csproj", "{D0B3CA98-1B49-4DE5-82CB-9FDA9FF8875E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{70A6A56F-7534-43C5-91C7-B6E5AAC9A2A9}"
 EndProject

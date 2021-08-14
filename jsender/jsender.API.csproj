@@ -5,6 +5,7 @@
   </PropertyGroup>
 
 
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'jsender' " />
   <ItemGroup>
     <None Remove="Application\" />
     <None Remove="Utility\" />
@@ -14,6 +15,7 @@
     <None Remove="Services\" />
     <None Remove="Azure.Messaging.ServiceBus" />
     <None Remove="Newtonsoft.Json" />
+    <None Remove="Microsoft.AspNetCore.Mvc.Versioning" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Application\" />
@@ -26,5 +28,6 @@
   <ItemGroup>
     <PackageReference Include="Azure.Messaging.ServiceBus" Version="7.2.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="4.2.0" />
   </ItemGroup>
 </Project>

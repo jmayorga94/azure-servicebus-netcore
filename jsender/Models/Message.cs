@@ -1,5 +1,4 @@
-﻿using System;
-namespace jsender.Models
+﻿namespace jsender.Models
 {
     public class Message
     {

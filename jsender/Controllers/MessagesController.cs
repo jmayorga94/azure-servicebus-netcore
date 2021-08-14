@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using jsender.Application;
 using jsender.Requests;
@@ -10,8 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace jsender.Controllers
 {
-  
-    [Route("api/messages")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/messages")]
     [ApiController]
     public class MessagesController : ControllerBase
     {
@@ -24,7 +22,7 @@ namespace jsender.Controllers
         }
 
         [HttpPost("send")]
-        public async Task<ActionResult> Send (SendMessageRequest request)
+        public async Task<ActionResult> Send (SendSingleMessageRequest request)
         {
             try
             {
