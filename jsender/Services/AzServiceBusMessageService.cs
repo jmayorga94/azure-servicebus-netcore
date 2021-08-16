@@ -29,7 +29,7 @@ namespace jsender.Services
                 string jsonString = JsonConvert.SerializeObject(transaction);
                 byte[] byteArray = Encoding.ASCII.GetBytes(jsonString);
                 ServiceBusMessage message = new ServiceBusMessage(byteArray);
-                message.ContentType = JSON_CONTENT_TYPE;
+                message.ContentType = JsonContentType;
                 
 
                 await _sender.SendMessageAsync(message);
@@ -48,7 +48,7 @@ namespace jsender.Services
             string jsonString = JsonConvert.SerializeObject(transaction);
             byte[] byteArray = Encoding.ASCII.GetBytes(jsonString);
             ServiceBusMessage message = new ServiceBusMessage(byteArray);
-            message.ContentType = JSON_CONTENT_TYPE;
+            message.ContentType = JsonContentType;
 
             using ServiceBusMessageBatch messageBatch = await _sender.CreateMessageBatchAsync();
 
