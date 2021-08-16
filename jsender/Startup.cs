@@ -40,7 +40,7 @@ namespace jsender
             services.AddSingleton(new ServiceBusClient(Configuration.GetSection("AzServiceBusConfig")["ConnectionString"]));
             services.AddSingleton(x=> x.GetService<ServiceBusClient>().CreateSender(Configuration.GetSection("AzServiceBusConfig")["QueueName"]));
             services.AddScoped<IMessageService, AzServiceBusMessageService>();
-            services.Configure<AzServiceBusConfig>(Configuration.GetSection("AzServiceBusConfig"));
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
