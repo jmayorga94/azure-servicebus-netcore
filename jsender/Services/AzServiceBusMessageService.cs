@@ -1,33 +1,36 @@
 ﻿using System;
+using System.Text;
 using System.Threading.Tasks;
 using Azure.Messaging.ServiceBus;
+using jsender.API.Models;
 using jsender.Application;
-using jsender.Utility;
-using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 
 namespace jsender.Services
 {
     public class AzServiceBusMessageService : IMessageService
     {
-        public static ServiceBusClient _client { get; set; }
+        private readonly ServiceBusClient _client;
+        private static string JsonContentType = "application/json";
+        private  ServiceBusSender _sender { get; set; }
 
-        public static ServiceBusSender _sender { get; set; }
-
-        private AzServiceBusConfig _serviceBusConfig { get; set; }
-
-        public AzServiceBusMessageService(IOptions<AzServiceBusConfig> serviceBusConfig)
+   
+        public AzServiceBusMessageService(ServiceBusClient client, ServiceBusSender sender)
         {
-            _serviceBusConfig = serviceBusConfig.Value;
-            _client = new ServiceBusClient(_serviceBusConfig.ConnectionString);
-            _sender = _client.CreateSender(_serviceBusConfig.QueueName);
-
+            _client = client;
+            _sender = sender;
+           
         }
 
-        public async Task<bool> SendMessageAsync(string bodyOfMessage)
+        public async Task<bool> SendMessageAsync(Transaction transaction)
         {
             try
             {
-                ServiceBusMessage message = new ServiceBusMessage(bodyOfMessage);
+                string jsonString = JsonConvert.SerializeObject(transaction);
+                byte[] byteArray = Encoding.ASCII.GetBytes(jsonString);
+                ServiceBusMessage message = new ServiceBusMessage(byteArray);
+                message.ContentType = JSON_CONTENT_TYPE;
+                
 
                 await _sender.SendMessageAsync(message);
 
@@ -40,9 +43,35 @@ namespace jsender.Services
             }
         }
 
-        public async Task<bool> SendMultipleMessages(int quantity, string message)
+        public async Task<bool> SendMultipleMessages(int quantity, Transaction transaction)
         {
-            throw new NotImplementedException();
+            string jsonString = JsonConvert.SerializeObject(transaction);
+            byte[] byteArray = Encoding.ASCII.GetBytes(jsonString);
+            ServiceBusMessage message = new ServiceBusMessage(byteArray);
+            message.ContentType = JSON_CONTENT_TYPE;
+
+            using ServiceBusMessageBatch messageBatch = await _sender.CreateMessageBatchAsync();
+
+            for (int i = 1; i <= quantity; i++)
+            {
+                if (!messageBatch.TryAddMessage(message))
+                {
+                    throw new Exception($"The message {i} is too large to fit in the batch.");
+                }
+            }
+
+            try
+            {
+            
+                await _sender.SendMessagesAsync(messageBatch);
+
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
     }

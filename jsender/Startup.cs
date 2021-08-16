@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Azure.Messaging.ServiceBus;
 using jsender.Application;
 using jsender.Services;
 using jsender.Utility;
@@ -28,12 +29,16 @@ namespace jsender
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddMvc().AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase);
+            services.AddAutoMapper(typeof(Startup));
             services.AddApiVersioning(options =>
             {
                 options.AssumeDefaultVersionWhenUnspecified = true;
                 options.DefaultApiVersion = new ApiVersion(1, 0);
             });
 
+            services.AddSingleton(new ServiceBusClient(Configuration.GetSection("AzServiceBusConfig")["ConnectionString"]));
+            services.AddSingleton(x=> x.GetService<ServiceBusClient>().CreateSender(Configuration.GetSection("AzServiceBusConfig")["QueueName"]));
             services.AddScoped<IMessageService, AzServiceBusMessageService>();
             services.Configure<AzServiceBusConfig>(Configuration.GetSection("AzServiceBusConfig"));
         }
